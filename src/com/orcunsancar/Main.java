@@ -2,25 +2,20 @@ package com.orcunsancar;
 
 public class Main {
     public static void main(String[] args) {
-        /*
-        EmailSender emailSender = new Hotmail();
-        emailSender.send();
-        /*
-        /*
-        EmailSender amigoscodeSender = new EmailSender() {
-            @Override
-            public void send() {
-                System.out.println("Send email using Amigoscode server");
-            }
-        };*/
-
-        EmailSender gmail = () -> System.out.println("Sending email using Gmail");
-
-        EmailSender hotmail = () -> {
-                System.out.println("Sending email using Hotmail");
+        EmailSender gmail = (from, to) -> {
+            System.out.println("Sending email using Gmail");
+            return false;
         };
 
-        gmail.send();
-        hotmail.send();
+        EmailSender hotmail = (from, to)-> {
+            // logic
+            var isValid = to.contains("@");
+            // more logic
+            System.out.println("Sending email using Hotmail");
+            return true;
+        };
+
+        boolean wasEmailSent = gmail.send("hello@amigoscode.com", "alex@gmail.com");
+        hotmail.send("hello@amigoscode.com", "jamila@gmail.com");
     }
 }
