@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 public class Main {
     public static void main(String[] args) {
         List<String> names = List.of("Jamila", "Alex", "Mariam");
-        Consumer<String> stringConsumer = name -> System.out.println(name);
+        Consumer<String> stringConsumer = System.out::println;
 
         // names.forEach(stringConsumer);
-        names.forEach(name -> System.out.println(name));
+        names.forEach(System.out::println);
     }
 }
