@@ -1,25 +1,16 @@
 package com.orcunsancar;
 
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 
 public class Main {
     public static void main(String[] args) {
-        // sendEmail("hello@amigoscode.com");
-        sendEmailConsumer.accept("jamila@amigoscode.com");
-        List<String> emails = List.of(
-                "hello@amigoscode.com",
-                "foo@amigoscode.com",
-                "bar@amigoscode.com"
-        );
-        emails.forEach(Main::sendEmail);
-        // emails.forEach(email -> sendEmail(email));
+        sendEmailBiConsumer.accept("hello@amigoscode.com", "alexu@amigoscode.com");
     }
 
-    static Consumer<String> sendEmailConsumer =
-            email -> System.out.println("Sending email to " + email);
+    static BiConsumer<String, String> sendEmailBiConsumer =
+            (from, to) -> System.out.printf("Sending email from %s to %s%n", from,  to);
 
-    static void sendEmail(String email) {
-        System.out.println("Sending email to " + email);
+    static void sendEmail(String from, String to) {
+        System.out.printf("Sending email from %s to %s%n", from,  to);
     }
 }
