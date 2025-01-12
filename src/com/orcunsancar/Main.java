@@ -1,16 +1,23 @@
 package com.orcunsancar;
 
-import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        sendEmailBiConsumer.accept("hello@amigoscode.com", "alexu@amigoscode.com");
+        var email = "hello@amigoscode.com";
+        // System.out.println(isValidEmail(email));
+        System.out.println(isValidEmailPredicate.test(email));
+        boolean test = isValidEmailPredicate.and(containsDotPredicate).test(email);
+        System.out.println(test);
+
     }
 
-    static BiConsumer<String, String> sendEmailBiConsumer =
-            (from, to) -> System.out.printf("Sending email from %s to %s%n", from,  to);
+    static Predicate<String> isValidEmailPredicate =
+            email -> email.contains("@");
 
-    static void sendEmail(String from, String to) {
-        System.out.printf("Sending email from %s to %s%n", from,  to);
+    static Predicate<String> containsDotPredicate =
+            email -> email.contains("@");
+    static boolean isValidEmail(String email) {
+        return email.contains("@");
     }
 }
