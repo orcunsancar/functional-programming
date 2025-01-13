@@ -1,20 +1,28 @@
 package com.orcunsancar;
 
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
 
-        EmailValidator emailValidator = new EmailValidator();
-
-        List<String> emails = List.of(
-                "hello@gmail.com",
-                "hellogmail.com"
+        Person jamila = new Person(
+                "Jamila",
+                "+0000000",
+                "jamila@gmail.com"
         );
 
-        emails.forEach(email -> {
-            var isValid = emailValidator.apply(email);
-            System.out.printf("Email %s is valid: %s%n", email, isValid);
-        });
+        Person alex = new Person(
+                "Alex",
+                "0000000",
+                "alex@gmail.com"
+        );
+
+
+        PersonRegistrationValidator validator =
+                PersonRegistrationValidator
+                        .isEmailTaken()
+                        .and(PersonRegistrationValidator.isEmailValid())
+                        .and(PersonRegistrationValidator.isPhoneNumberValid());
+
+        System.out.println(validator.apply(jamila));
+        System.out.println(validator.apply(alex));
     }
 }

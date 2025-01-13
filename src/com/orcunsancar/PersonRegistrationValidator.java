@@ -17,7 +17,7 @@ public interface PersonRegistrationValidator extends Function<Person, Validation
     }
 
     static PersonRegistrationValidator isPhoneNumberValid() {
-        return person -> person.email().contains("+") ?
+        return person -> person.phoneNumber().contains("+") ?
                 SUCCESS : PHONE_NOT_VALID_ERROR;
     }
 
